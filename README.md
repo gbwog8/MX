@@ -3,7 +3,8 @@ Microsoft365 E5 Renew X 自动特赦
 
 ## 使用方法1（Action自动特赦）
 #### 1.**配置 GitHub Secrets**
-
+    - 在你的 fork 仓库中，进入 `Actions` 页面。
+    - 如果 Actions 没有自动启用，点击 `Enable GitHub Actions` 按钮以激活它。
     - 转到你 fork 的仓库页面。
     - 点击 `Settings`，然后在左侧菜单中选择 `Secrets`。
     - 添加以下 Secrets：
