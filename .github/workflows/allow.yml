@@ -24,16 +24,13 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y wget unzip xvfb libxi6 libdbus-glib-1-2
-          wget -N https://chromedriver.storage.googleapis.com/113.0.5672.63/chromedriver_linux64.zip
-          unzip chromedriver_linux64.zip -d /usr/local/bin/
-          rm chromedriver_linux64.zip
           python -m pip install --upgrade pip
-          pip install selenium
-        
+          pip install playwright
+          python -m playwright install
+
       - name: 运行登录脚本
         env:
           RENEW_URL: ${{ secrets.RENEW_URL }}
           PASSWORD: ${{ secrets.PASSWORD }}
         run: |
           xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' python allow.py
-
