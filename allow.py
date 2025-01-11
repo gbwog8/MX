@@ -53,7 +53,7 @@ async def login(renew_url, 登录密码):
             await submit_button.click()
         else:
             print('提交按钮未找到')
-        print(f'{renew_urlsplit(":")}/System/SpecialPardon')
+        print(f'{renew_url.split(":")}/System/SpecialPardon')
         # 访问链接
         await page.goto(f'{renew_url}/System/SpecialPardon')
         
