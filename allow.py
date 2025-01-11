@@ -17,7 +17,7 @@ chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--disable-dev-shm-usage")
 
 # 初始化WebDriver（确保你已经安装了相应的浏览器驱动程序）
-driver = webdriver.Chrome(options=chrome_options)
+driver = webdriver.Chrome()
 
 # 打开目标网页
 driver.get(renew_url)
