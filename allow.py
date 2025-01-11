@@ -54,8 +54,7 @@ async def login(renew_url, 登录密码):
             print('提交按钮未找到')
 
         # 访问链接
-        # await page.goto(f'{renew_url}/System/SpecialPardon')
-        page = await browser.newPage()
+        # page = await browser.newPage()
         await page.goto(f'{renew_url}/System/SpecialPardon')
 
 
