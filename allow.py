@@ -32,9 +32,7 @@ async def login(renew_url, 登录密码):
 
         page = await browser.newPage()
         await page.goto(renew_url)
-        await delay_time(5000)
-        print("页面加载完成")
-        
+
         # 获取复选框元素
         checkbox = await page.querySelector('input[type="checkbox"]')
         if checkbox:
@@ -58,8 +56,14 @@ async def login(renew_url, 登录密码):
 
         # 访问链接
         await page.goto(f'{renew_url}/System/SpecialPardon')
-        await delay_time(5000)
-        print("页面加载完成")
+
+        # 点击 class="btn btn-success" 的按钮
+        success_button = await page.querySelector('.btn.btn-success')
+        if success_button:
+            await success_button.click()
+            print('成功按钮已点击')
+        else:
+            print('成功按钮未找到')
 
     except Exception as e:
         print(f'登录时出现错误: {e}')
