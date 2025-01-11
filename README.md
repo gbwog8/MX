@@ -7,10 +7,9 @@ Microsoft365 E5 Renew X 自动特赦
     - 点击 `Settings`，然后在左侧菜单中选择 `Secrets`。
     - 添加以下 Secrets：
         - `RENEW_URL`: 包含Microsoft365_E5_Renew_X的公网访问链接。
-        - `PASSWORD`: 你的Microsoft365_E5_Renew_X登录密码
-
+        - `PASSWORD`: 你的Microsoft365_E5_Renew_X登录密码。
+        
 #### 2.**启动 GitHub Actions**
-
 1. **配置 GitHub Actions**
     - 在你的 fork 仓库中，进入 `Actions` 页面。
     - 如果 Actions 没有自动启用，点击 `Enable GitHub Actions` 按钮以激活它。
