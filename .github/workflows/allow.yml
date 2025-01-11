@@ -22,13 +22,9 @@ jobs:
 
       - name: 安装依赖
         run: |
-          pip install selenium
-          sudo apt-get update
-          sudo apt-get install -y wget unzip
-          LATEST_CHROMEDRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)
-          wget -q -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/${LATEST_CHROMEDRIVER_VERSION}/chromedriver_linux64.zip
-          unzip /tmp/chromedriver.zip -d /usr/local/bin/
-          sudo apt-get install -y google-chrome-stable
+          python -m pip install --upgrade pip
+          pip install pyppeteer aiofiles requests
+          pip install --upgrade pyppeteer
 
       - name: 运行登录脚本
         env:
