@@ -53,10 +53,10 @@ async def login(renew_url, 登录密码):
             await submit_button.click()
         else:
             print('提交按钮未找到')
-
+        print(f'{renew_url}/System/SpecialPardon')
         # 访问链接
         await page.goto(f'{renew_url}/System/SpecialPardon')
-        print(f'{renew_url}/System/SpecialPardon')
+        
 
         # 点击 class="btn btn-success" 的按钮
         success_button = await page.querySelector('.btn.btn-success')
