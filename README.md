@@ -1,4 +1,4 @@
-# Microsoft365_E5_Renew_X_-
+# Renew_X_Auto_Pardon
 Microsoft365 E5 Renew X 自动特赦
 
 ## 使用方法1（Action自动特赦）
