@@ -55,7 +55,7 @@ async def login(renew_url, 登录密码):
 
         # 访问链接
         # await page.goto(f'{renew_url}/System/SpecialPardon')
-        page.on('response', interceptedResponse => {
+        page.on('response', interceptedResponse) => {
             if (interceptedResponse.url() === f'{renew_url}/System/SpecialPardon') {
                 // 处理响应
                 console.log('响应状态:', interceptedResponse.status());
