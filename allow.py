@@ -55,12 +55,17 @@ async def login(renew_url, 登录密码):
 
         # 访问链接
         # await page.goto(f'{renew_url}/System/SpecialPardon')
-        page.on('response', interceptedResponse) => {
-            if (interceptedResponse.url() === f'{renew_url}/System/SpecialPardon') {
-                // 处理响应
-                console.log('响应状态:', interceptedResponse.status());
-            }
-        });
+        const puppeteer = require('puppeteer-extra');
+        const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+        puppeteer.use(StealthPlugin());
+
+        (async () => {
+            const browser = await puppeteer.launch({ headless: true });
+            const page = await browser.newPage();
+            await page.goto(f'{renew_url}/System/SpecialPardon');
+            // 其他操作
+        })();
+
 
 
     except Exception as e:
