@@ -47,3 +47,7 @@ Microsoft365 E5 Renew X 自动特赦
    - `auth_allow.py`替换为脚本路径
 
 可以添加进Windows自动任务
+
+#### playwright版本
+[`auth_allow_playwright.py`](https://github.com/OnlineMo/Microsoft365_E5_Renew_X_-/raw/refs/heads/main/auth_allow_playwright.py)
+自行研究
