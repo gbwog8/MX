@@ -1,5 +1,6 @@
 from selenium import webdriver
-from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 import os
 
 # 从环境变量中获取 Telegram Bot Token 和 Chat ID
@@ -10,7 +11,11 @@ renew_url = RENEW_URL #格式：https://www.example.com    请注意，后面不
 登录密码 = PASSWORD
 
 # 初始化WebDriver（确保你已经安装了相应的浏览器驱动程序）
-driver = webdriver.Chrome()
+chrome_options = Options()
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--disable-gpu")
+service = Service('/path/to/chromedriver')
+driver = webdriver.Chrome(service=service, options=chrome_options)
 
 # 打开目标网页
 driver.get(renew_url)
