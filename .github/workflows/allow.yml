@@ -25,6 +25,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install selenium
           sudo rm /usr/local/bin/chromedriver
+          sudo mkdir /usr/local/bin/chromedriver
           sudo apt-get update
           sudo apt-get install -y wget unzip xvfb libxi6 libdbus-glib-1-2
           wget -N https://chromedriver.storage.googleapis.com/113.0.5672.63/chromedriver_linux64.zip
