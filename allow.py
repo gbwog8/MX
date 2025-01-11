@@ -14,7 +14,7 @@ renew_url = RENEW_URL #格式：https://www.example.com    请注意，后面不
 chrome_options = Options()
 chrome_options.add_argument("--headless")
 chrome_options.add_argument("--disable-gpu")
-service = Service('/path/to/chromedriver')
+service = Service('/usr/local/bin/chromedriver')
 driver = webdriver.Chrome(service=service, options=chrome_options)
 
 # 打开目标网页
