@@ -6,7 +6,7 @@ import random
 import requests
 import os
 
-# 从环境变量中获取 Telegram Bot Token 和 Chat ID
+# 从环境变量中获取 RENEW_URL 和 PASSWORD
 RENEW_URL = os.getenv('RENEW_URL')
 PASSWORD = os.getenv('PASSWORD')
 
