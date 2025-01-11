@@ -22,4 +22,39 @@ async def main():
     try:
         await page.goto(renew_url, {'timeout': 60000})  # 增加超时时间到 60 秒
     except Exception as e:
-        print
+        print(f'页面加载失败: {e}')
+        await browser.close()
+        return
+
+    # 获取复选框元素并点击
+    checkbox = await page.querySelector('input[type="checkbox"]')
+    if checkbox:
+        await checkbox.click()
+    else:
+        print('复选框未找到')
+
+    # 获取输入框元素并设置值
+    input_field = await page.querySelector('.form-control.is-invalid')
+    if input_field:
+        await input_field.type(登录密码)
+    else:
+        print('输入框未找到')
+
+    # 获取提交按钮元素并点击
+    submit_button = await page.querySelector('button[type="submit"]')
+    if submit_button:
+        await submit_button.click()
+    else:
+        print('提交按钮未找到')
+
+    # 访问链接
+    try:
+        await page.goto(f'{renew_url}/System/SpecialPardon', {'timeout': 60000})  # 增加超时时间到 60 秒
+    except Exception as e:
+        print(f'页面加载失败: {e}')
+
+    # 关闭浏览器
+    await browser.close()
+
+# 运行主函数
+asyncio.run(main())
