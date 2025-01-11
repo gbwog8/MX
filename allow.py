@@ -32,7 +32,9 @@ async def login(renew_url, 登录密码):
 
         page = await browser.newPage()
         await page.goto(renew_url)
-
+        await delay_time(5000)
+        print("页面加载完成")
+        
         # 获取复选框元素
         checkbox = await page.querySelector('input[type="checkbox"]')
         if checkbox:
