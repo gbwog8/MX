@@ -1,5 +1,6 @@
 # Renew_X_Auto_Pardon
-Microsoft365 E5 Renew X 自动特赦
+- 利用python实现 Microsoft365 E5 Renew X 自动特赦
+- 可解除自动特赦时间要大于30的限制
 
 ## 使用方法1（Action自动特赦）
 #### 1.**fork仓库**
