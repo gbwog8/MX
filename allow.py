@@ -54,6 +54,15 @@ async def main():
         print("特赦成功")
     except Exception as e:
         print(f'页面加载失败: {e}')
+        # 重试机制
+        for _ in range(3):
+            try:
+                await page.goto(f'{renew_url}/System/SpecialPardon', {'timeout': 60000})
+                await page.waitForNavigation({'timeout': 60000})
+                print("特赦成功")
+                break
+            except Exception as retry_e:
+                print(f'重试加载失败: {retry_e}')
 
     # 关闭浏览器
     await browser.close()
