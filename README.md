@@ -39,7 +39,7 @@ Microsoft365 E5 Renew X 自动特赦
     pip install selenium
    ```
 3. **下载脚本**
-  - 链接：`https://github.com/OnlineMo/Microsoft365_E5_Renew_X_-/raw/refs/heads/main/allow.py`
+  - 链接：`https://raw.githubusercontent.com/OnlineMo/Microsoft365_E5_Renew_X_-/refs/heads/main/auth_allow.py`
 4. **修改脚本**
    - 将脚本内初始化的变量设为对应值
 5. **运行脚本**
