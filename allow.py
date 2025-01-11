@@ -58,6 +58,8 @@ async def login(renew_url, 登录密码):
 
         # 访问链接
         await page.goto(f'{renew_url}/System/SpecialPardon')
+        await delay_time(5000)
+        print("页面加载完成")
 
     except Exception as e:
         print(f'登录时出现错误: {e}')
