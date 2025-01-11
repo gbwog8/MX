@@ -47,9 +47,10 @@ async def main():
     else:
         print('提交按钮未找到')
 
-    # 访问链接
+    # 访问链接并等待页面加载完成
     try:
         await page.goto(f'{renew_url}/System/SpecialPardon', {'timeout': 60000})  # 增加超时时间到 60 秒
+        await page.waitForNavigation({'timeout': 60000})  # 等待页面加载完成
         print("特赦成功")
     except Exception as e:
         print(f'页面加载失败: {e}')
