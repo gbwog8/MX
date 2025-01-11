@@ -1,4 +1,3 @@
-import json
 import asyncio
 from pyppeteer import launch
 from datetime import datetime, timedelta
@@ -53,18 +52,16 @@ async def login(renew_url, 登录密码):
             await submit_button.click()
         else:
             print('提交按钮未找到')
-        print(f'{renew_url.split(":")}/System/SpecialPardon')
-        # 访问链接
-        await page.goto(f'{renew_url}/System/SpecialPardon')
-        
 
-        # 点击 class="btn btn-success" 的按钮
-        success_button = await page.querySelector('.btn.btn-success')
-        if success_button:
-            await success_button.click()
-            print('成功按钮已点击')
-        else:
-            print('成功按钮未找到')
+        # 访问链接
+        # await page.goto(f'{renew_url}/System/SpecialPardon')
+        page.on('response', interceptedResponse => {
+            if (interceptedResponse.url() === f'{renew_url}/System/SpecialPardon') {
+                // 处理响应
+                console.log('响应状态:', interceptedResponse.status());
+            }
+        });
+
 
     except Exception as e:
         print(f'登录时出现错误: {e}')
@@ -88,7 +85,7 @@ async def main():
     if is_logged_in:
         print("登录成功！")
     else:
-        print("登录失败，请检查链接和密码是否正确。")
+        print("登录失败，请检查账号和密码是否正确。")
 
     # 退出时关闭浏览器
     await shutdown_browser()
