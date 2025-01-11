@@ -1,54 +1,52 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
+import asyncio
+from pyppeteer import launch
+from datetime import datetime, timedelta
+import aiofiles
+import random
+import requests
 import os
 
 # 从环境变量中获取 Telegram Bot Token 和 Chat ID
 RENEW_URL = os.getenv('RENEW_URL')
 PASSWORD = os.getenv('PASSWORD')
 
-renew_url = RENEW_URL #格式：https://www.example.com    请注意，后面不带/
+renew_url = RENEW_URL  # 格式：https://www.example.com 请注意，后面不带/
 登录密码 = PASSWORD
 
-# 初始化WebDriver（确保你已经安装了相应的浏览器驱动程序）
-chrome_options = Options()
-chrome_options.add_argument("--headless")
-chrome_options.add_argument("--disable-gpu")
-service = Service('/usr/local/bin/chromedriver')
-driver = webdriver.Chrome(service=service, options=chrome_options)
+async def main():
+    # 启动浏览器
+    browser = await launch(headless=True, args=['--no-sandbox', '--disable-setuid-sandbox'])
+    page = await browser.newPage()
 
-# 打开目标网页
-driver.get(renew_url)
+    # 打开目标网页
+    await page.goto(renew_url)
 
-# 获取复选框元素
-checkbox = driver.find_element(By.CSS_SELECTOR, 'input[type="checkbox"]')
+    # 获取复选框元素并点击
+    checkbox = await page.querySelector('input[type="checkbox"]')
+    if checkbox:
+        await checkbox.click()
+    else:
+        print('复选框未找到')
 
-# 检查复选框是否存在并点击
-if checkbox:
-    checkbox.click()
-else:
-    print('复选框未找到')
+    # 获取输入框元素并设置值
+    input_field = await page.querySelector('.form-control.is-invalid')
+    if input_field:
+        await input_field.type(登录密码)
+    else:
+        print('输入框未找到')
 
-# 获取输入框元素
-input_field = driver.find_element(By.CSS_SELECTOR, '.form-control.is-invalid')
+    # 获取提交按钮元素并点击
+    submit_button = await page.querySelector('button[type="submit"]')
+    if submit_button:
+        await submit_button.click()
+    else:
+        print('提交按钮未找到')
 
-# 检查输入框是否存在并设置值
-if input_field:
-    input_field.send_keys(登录密码)
-else:
-    print('输入框未找到')
+    # 访问链接
+    await page.goto(f'{renew_url}/System/SpecialPardon')
 
-# 获取提交按钮元素
-submit_button = driver.find_element(By.CSS_SELECTOR, 'button[type="submit"]')
+    # 关闭浏览器
+    await browser.close()
 
-# 检查提交按钮是否存在并点击
-if submit_button:
-    submit_button.click()
-else:
-    print('提交按钮未找到')
-
-# 访问链接
-driver.get(f'{renew_url}/System/SpecialPardon')
-
-# 关闭浏览器
-driver.quit()
+# 运行主函数
+asyncio.run(main())
