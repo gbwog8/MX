@@ -50,6 +50,7 @@ async def main():
     # 访问链接
     try:
         await page.goto(f'{renew_url}/System/SpecialPardon', {'timeout': 60000})  # 增加超时时间到 60 秒
+        print("特赦成功")
     except Exception as e:
         print(f'页面加载失败: {e}')
 
