@@ -56,6 +56,7 @@ async def login(renew_url, 登录密码):
 
         # 访问链接
         await page.goto(f'{renew_url}/System/SpecialPardon')
+        print(f'{renew_url}/System/SpecialPardon')
 
         # 点击 class="btn btn-success" 的按钮
         success_button = await page.querySelector('.btn.btn-success')
@@ -87,7 +88,7 @@ async def main():
     if is_logged_in:
         print("登录成功！")
     else:
-        print("登录失败，请检查账号和密码是否正确。")
+        print("登录失败，请检查链接和密码是否正确。")
 
     # 退出时关闭浏览器
     await shutdown_browser()
