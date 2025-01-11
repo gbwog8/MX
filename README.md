@@ -44,6 +44,6 @@ Microsoft365 E5 Renew X 自动特赦
    - 将脚本内初始化的变量设为对应值
 5. **运行脚本**
    - `python auth_allow.py`
-   - auth_allow.py替换为脚本路径
+   - `auth_allow.py`替换为脚本路径
 
 可以添加进Windows自动任务
