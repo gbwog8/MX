@@ -3,6 +3,7 @@ Microsoft365 E5 Renew X 自动特赦
 
 ## 使用方法1（Action自动特赦）
 #### 1.**配置 GitHub Secrets**
+
     - 转到你 fork 的仓库页面。
     - 点击 `Settings`，然后在左侧菜单中选择 `Secrets`。
     - 添加以下 Secrets：
@@ -33,8 +34,8 @@ Microsoft365 E5 Renew X 自动特赦
 2. **安装对应的库**
    - 运行以下命令
    ```bash
-python -m pip install --upgrade pip
-pip install selenium
+    python -m pip install --upgrade pip
+    pip install selenium
    ```
 3. **下载脚本**
   - 链接：`https://raw.githubusercontent.com/OnlineMo/Microsoft365_E5_Renew_X_-/refs/heads/main/.github/workflows/auth_allow.py`
