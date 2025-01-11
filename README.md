@@ -53,4 +53,4 @@ Microsoft365 E5 Renew X 自动特赦
 自行研究
 
 ## Star
-[![Stargazers over time](https://starchart.cc/OnlineMo/Renew_X_Auto_Pardon.svg?variant=adaptive)]
+![Stargazers over time](https://starchart.cc/OnlineMo/Renew_X_Auto_Pardon.svg?variant=adaptive)
