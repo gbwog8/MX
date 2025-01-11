@@ -51,3 +51,6 @@ Microsoft365 E5 Renew X 自动特赦
 #### playwright版本
 [`auth_allow_playwright.py`](https://github.com/OnlineMo/Microsoft365_E5_Renew_X_-/raw/refs/heads/main/auth_allow_playwright.py)
 自行研究
+
+## Star
+[![Stargazers over time](https://starchart.cc/OnlineMo/Renew_X_Auto_Pardon.svg?variant=adaptive)](https://starchart.cc/OnlineMo/Renew_X_Auto_Pardon)
