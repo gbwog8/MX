@@ -21,12 +21,6 @@ WORKDIR /app
 # 复制项目文件
 COPY . /app
 
-# 从 .env 读取环境变量（docker-compose 会处理）
-# 这里无需硬编码 ENV
+# 默认入口：使用 supercronic 读取 CRON_EXPR 并执行任务
+ENTRYPOINT [ "sh", "-c", "echo \"$CRON_EXPR\" | supercronic -" ]
 
-# 容器启动后，用 supercronic 根据 CRON_EXPR 定时运行
-# docker-compose.yml 会用 echo 拼接 cron 规则到这个命令
-ENTRYPOINT []
-
-# 默认命令（可直接运行，不经过定时）
-CMD ["xvfb-run", "--auto-servernum", "--server-args=-screen 0 1024x768x24", "python", "allow.py"]
