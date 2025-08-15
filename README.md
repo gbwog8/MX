@@ -66,8 +66,6 @@ docker run --rm \
 
 #### Docker Compose 示例（定时运行）
 ```yaml
-version: '3.8'
-
 services:
   renew_x_auto_pardon:
     image: onlinemo/renew_x_auto_pardon
