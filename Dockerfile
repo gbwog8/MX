@@ -24,9 +24,9 @@ COPY . /app
 # 从 .env 读取环境变量（docker-compose 会处理）
 # 这里无需硬编码 ENV
 
-# 容器启动后，用 supercronic 根据 CRON_EXPR 定时运行 allow.py
-# 注意：docker-compose.yml 里会拼接 cron 表达式和执行命令
+# 容器启动后，用 supercronic 根据 CRON_EXPR 定时运行
+# docker-compose.yml 会用 echo 拼接 cron 规则到这个命令
 ENTRYPOINT []
 
-# 默认命令（会被 docker-compose 的 command 覆盖）
-CMD ["python", "allow.py"]
+# 默认命令（可直接运行，不经过定时）
+CMD ["xvfb-run", "--auto-servernum", "--server-args=-screen 0 1024x768x24", "python", "allow.py"]
