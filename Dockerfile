@@ -3,10 +3,6 @@ FROM python:3.11-slim
 
 # 设置时区（可按需修改，比如 Asia/Shanghai）
 ENV TZ=Asia/Shanghai
-# 目标任务地址
-ENV RENEW_URL=http://你的地址(如需启动时设置请删除此变量)
-# 登录密码
-ENV PASSWORD=你的密码(如需启动时设置请删除此变量)
 
 # 安装系统依赖和 supercronic（轻量定时器）
 RUN apt-get update && apt-get install -y \
