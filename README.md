@@ -52,7 +52,38 @@ python auth_allow.py
 
 ---
 
-## 使用方法3（Docker 部署）
+## 使用方法3（Docker Hub 部署）
+
+无需构建镜像，直接使用官方发布的 Docker 镜像：[onlinemo/renew_x_auto_pardon](https://hub.docker.com/r/onlinemo/renew_x_auto_pardon)
+
+#### 快速运行（立即执行一次）
+```bash
+docker run --rm \
+  -e RENEW_URL="https://你的地址" \
+  -e PASSWORD="你的密码" \
+  onlinemo/renew_x_auto_pardon
+```
+
+#### Docker Compose 示例（定时运行）
+```yaml
+version: '3.8'
+
+services:
+  renew_x_auto_pardon:
+    image: onlinemo/renew_x_auto_pardon
+    container_name: renew_x_auto_pardon
+    environment:
+      - RENEW_URL=https://你的地址
+      - PASSWORD=你的密码
+      - CRON_EXPR=0 8 * * *   # 每天早上 8 点运行一次
+    command: >
+      sh -c "echo \"$CRON_EXPR xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' python allow.py\" | supercronic -"
+    restart: unless-stopped
+```
+
+---
+
+## 使用方法4（Docker 本地构建部署）
 
 #### 1. 准备环境
 - 安装 [Docker](https://docs.docker.com/get-docker/)  
@@ -71,14 +102,10 @@ RENEW_URL=https://你的地址
 PASSWORD=你的密码
 CRON_EXPR=0 8 * * *   # 每天早上 8 点运行一次
 ```
-> `CRON_EXPR` 使用标准 Linux cron 语法，可自由调整执行频率  
-> 例如：
-> - 每小时整点运行：`0 * * * *`
-> - 每周一早上 7 点运行：`0 7 * * 1`
 
 ---
 
-#### 4. 直接运行（立即执行一次）
+#### 4. 构建并运行
 ```bash
 docker build -t renew_x_auto_pardon .
 docker run --rm \
@@ -87,41 +114,12 @@ docker run --rm \
     renew_x_auto_pardon
 ```
 
----
 
 #### 5. 使用 Docker Compose 定时运行
-`docker-compose.yml` 示例：
-```yaml
-version: '3.8'
+参考方法3中的 `docker-compose.yml` 示例
 
-services:
-  renew_x_auto_pardon:
-    build: .
-    container_name: renew_x_auto_pardon
-    env_file:
-      - .env
-    command: >
-      sh -c "echo \"$CRON_EXPR xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' python allow.py\" | supercronic -"
-    restart: unless-stopped
-```
-
-启动：
-```bash
-docker-compose up -d --build
-```
-
-查看日志：
-```bash
-docker-compose logs -f
-```
-
-修改 `.env` 后重新加载：
-```bash
-docker-compose down && docker-compose up -d
-```
-
----
 
 ## Star
 ![Stargazers over time](https://starchart.cc/OnlineMo/Renew_X_Auto_Pardon.svg?variant=adaptive)
-```
+
+---
