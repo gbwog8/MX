@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  renew_job:
+    build: .
+    container_name: renew_job
+    environment:
+      RENEW_URL: "https://你的地址"
+      PASSWORD: "你的密码"
+    command: >
+      sh -c "echo '0 8 * * * xvfb-run --auto-servernum --server-args=\"-screen 0 1024x768x24\" python allow.py' | supercronic -"
