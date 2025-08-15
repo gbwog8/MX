@@ -1,10 +1,11 @@
 version: '3.8'
+
 services:
-  renew_job:
+  renew_x_auto_pardon:
     build: .
-    container_name: renew_job
-    environment:
-      RENEW_URL: "https://你的地址"
-      PASSWORD: "你的密码"
+    container_name: renew_x_auto_pardon
+    env_file:
+      - .env
     command: >
-      sh -c "echo '0 8 * * * xvfb-run --auto-servernum --server-args=\"-screen 0 1024x768x24\" python allow.py' | supercronic -"
+      sh -c "echo \"$CRON_EXPR xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' python allow.py\" | supercronic -"
+    restart: unless-stopped
