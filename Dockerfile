@@ -21,6 +21,5 @@ WORKDIR /app
 # 复制项目文件
 COPY . /app
 
-# 默认入口：使用 supercronic 读取 CRON_EXPR 并执行任务
-ENTRYPOINT [ "sh", "-c", "echo \"$CRON_EXPR\" | supercronic -" ]
-
+# 默认入口：让 docker-compose 决定执行内容
+ENTRYPOINT [ "sh", "-c" ]
