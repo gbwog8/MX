@@ -66,6 +66,8 @@ docker run --rm \
 
 #### Docker Compose 示例（定时运行）
 ```yaml
+version: "3.9"
+
 services:
   renew_x_auto_pardon:
     image: onlinemo/renew_x_auto_pardon
@@ -73,9 +75,9 @@ services:
     environment:
       - RENEW_URL=https://你的地址
       - PASSWORD=你的密码
-      - CRON_EXPR=0 8 * * *   # 每天早上 8 点运行一次
+      - CRON_EXPR=0 8 * * *  # 每天早上 8 点运行一次
     command: >
-      sh -c "echo \"$CRON_EXPR xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' python allow.py\" | supercronic -"
+      sh -c "echo \"$CRON_EXPR xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' python /app/allow.py\" | supercronic /dev/stdin"
     restart: unless-stopped
 ```
 
