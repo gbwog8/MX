@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.9"
 
 services:
   login:
@@ -10,8 +10,7 @@ services:
     volumes:
       - ./app:/app  # 将当前目录挂载到容器中的 /app 目录
     restart: unless-stopped
-    entrypoint: ["xvfb-run", "--auto-servernum", "--server-args='-screen 0 1024x768x24'", "python", "allow.py"]
-    # Cron 配置：每三天运行一次
-    cron:
-      schedule: "0 0 */3 * *"
-      command: ["xvfb-run", "--auto-servernum", "--server-args='-screen 0 1024x768x24'", "python", "allow.py"]
+    command: >
+      sh -c "echo \"$CRON_EXPR xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' python /app/allow.py\" | supercronic /dev/stdin"
+    environment:
+      - CRON_EXPR="0 8 * * *"  # 每天早上 8 点运行一次
