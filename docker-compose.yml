@@ -1,16 +1,11 @@
 version: "3.9"
 
 services:
-  login:
+  renew_x_auto_pardon:
     build: .
-    container_name: login-script
+    container_name: renew_x_auto_pardon
     environment:
-      - RENEW_URL=${RENEW_URL}
-      - PASSWORD=${PASSWORD}
-    volumes:
-      - ./app:/app  # 将当前目录挂载到容器中的 /app 目录
+      RENEW_URL: ${RENEW_URL}
+      PASSWORD: ${PASSWORD}
+      CRON_EXPR: "0 8 * * *"  # 每天早上 8 点运行一次
     restart: unless-stopped
-    command: >
-      sh -c "echo \"$CRON_EXPR xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' python /app/allow.py\" | supercronic /dev/stdin"
-    environment:
-      - CRON_EXPR="0 8 * * *"  # 每天早上 8 点运行一次
