@@ -13,24 +13,22 @@ jobs:
 
     steps:
       - name: Checkout 仓库代码
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: 设置 Python 环境
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.11'  # 设置你希望使用的 Python 版本，建议使用稳定版本
+          python-version: '3.11'
 
       - name: 安装依赖
         run: |
-          sudo apt-get update
-          sudo apt-get install -y wget unzip xvfb libxi6 libdbus-glib-1-2
           python -m pip install --upgrade pip
           pip install playwright
-          python -m playwright install
+          playwright install-deps chromium
+          playwright install chromium
 
       - name: 运行登录脚本
         env:
           RENEW_URL: ${{ secrets.RENEW_URL }}
           PASSWORD: ${{ secrets.PASSWORD }}
-        run: |
-          xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' python allow.py
+        run: python allow.py
