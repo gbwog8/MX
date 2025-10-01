@@ -8,10 +8,14 @@ ENV PIP_NO_CACHE_DIR=1 \
 
 WORKDIR /app
 
-# Install curl for downloading supercronic
+# Install dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    curl ca-certificates \
+    curl ca-certificates tzdata \
     && rm -rf /var/lib/apt/lists/*
+
+# Set timezone
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Install Playwright and Chromium runtime dependencies (no Xvfb; headless)
 RUN pip install --no-cache-dir playwright && \
