@@ -7,5 +7,6 @@ services:
     environment:
       RENEW_URL: ${RENEW_URL}
       PASSWORD: ${PASSWORD}
+      TZ: "Asia/Shanghai"
       CRON_EXPR: "0 8 * * *"  # 每天早上 8 点运行一次
     restart: unless-stopped
