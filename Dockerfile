@@ -15,7 +15,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Install Playwright and Chromium runtime dependencies (no Xvfb; headless)
 RUN pip install --no-cache-dir playwright && \
-    python -m playwright install --with-deps chromium && \
+    playwright install chromium && \
+    playwright install-deps chromium && \
     rm -rf /root/.cache/pip && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
