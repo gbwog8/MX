@@ -9,7 +9,7 @@ RENEW_URL = os.getenv('RENEW_URL')
 PASSWORD = os.getenv('PASSWORD')
 
 # 基础校验，避免空变量导致运行时错误
-if not RENEUEW_URL or not PASSWORD:
+if not RENEW_URL or not PASSWORD:
     missing = []
     if not RENEW_URL:
         missing.append('RENEW_URL')
@@ -45,7 +45,7 @@ async def main():
                     ]
                 )
                 
-                # --- 这是进行真人伪装的关键修改 ---
+                # --- 唯一的修改：添加真人伪装配置 ---
                 context = await browser.new_context(
                     user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36',
                     viewport={'width': 1920, 'height': 1080},
@@ -64,6 +64,7 @@ async def main():
                 print("访问页面后，开始强制等待20秒...")
                 await asyncio.sleep(20)
                 print("20秒等待结束，继续执行脚本。")
+                
                 await page.screenshot(path='login_page_view.png', full_page=True)
                 print("已截取页面快照，请查看 login_page_view.png 文件。")
                 
@@ -75,13 +76,13 @@ async def main():
                 else:
                     print('复选框未找到')
 
-                # !!! 注意：修改了这里的选择器，使其更通用 !!!
-                input_field = await page.query_selector('input[type="password"]')
+                # 保持原始的选择器不做改动
+                input_field = await page.query_selector('.form-control.is-invalid')
                 if input_field:
                     await input_field.fill(PASSWORD)
                     print('密码已填充')
                 else:
-                    print('密码输入框未找到')
+                    print('输入框未找到')
 
                 submit_button = await page.query_selector('button[type="submit"]')
                 if submit_button:
