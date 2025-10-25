@@ -35,7 +35,7 @@ async def main():
             headless=True,
             args=[
                 '--no-sandbox',
-                '--disable-dev-shm-usage'  # '--ignore-certificate-errors'  # <--- 添加这一行
+                '--disable-dev-shm-usage'  #  '--ignore-certificate-errors'  # <--- 添加这一行
             ]
         )
         context = await browser.new_context(ignore_https_errors=True)
