@@ -55,7 +55,8 @@ async def main():
                 print("访问页面后，开始强制等待20秒...")
                 await asyncio.sleep(20)
                 print("20秒等待结束，继续执行脚本。")
-                
+                await page.screenshot(path='login_page_view.png', full_page=True)
+                print("已截取页面快照，请查看 login_page_view.png 文件。")
                 # 查找并操作页面元素
                 checkbox = await page.query_selector('input[type="checkbox"]')
                 if checkbox:
