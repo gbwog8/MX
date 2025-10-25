@@ -35,7 +35,7 @@ async def main():
             headless=True,
             args=[
                 '--no-sandbox',
-                '--disable-dev-shm-usage'  #  
+                '--disable-dev-shm-usage',  #  
                 '--ignore-certificate-errors'  # <--- 添加这一行
             ]
         )
