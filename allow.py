@@ -33,7 +33,8 @@ async def main():
         # 添加 ignore_https_errors=True 来忽略 HTTPS 证书错误
         browser = await p.chromium.launch(
             headless=True,
-            args=['--no-sandbox', '--disable-dev-shm-usage']
+            args=['--no-sandbox', '--disable-dev-shm-usage'],
+            '--ignore-certificate-errors'  # <--- 添加这一行
         )
         context = await browser.new_context(ignore_https_errors=True)
         page = await context.new_page()
