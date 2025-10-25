@@ -45,7 +45,12 @@ async def main():
         # 打开目标网页 (使用原始 RENEW_URL 进行登录操作)
         print(f"正在访问登录页: {RENEW_URL}")
         await page.goto(RENEW_URL)
-
+        
+        # --- 新增的强制等待代码 ---
+        print("访问页面后，开始强制等待20秒...")
+        await asyncio.sleep(20)
+        print("20秒等待结束，继续执行脚本。")
+        
         # 获取复选框元素
         checkbox = await page.query_selector('input[type="checkbox"]')
 
