@@ -32,3 +32,12 @@ jobs:
           RENEW_URL: ${{ secrets.RENEW_URL }}
           PASSWORD: ${{ secrets.PASSWORD }}
         run: python allow.py
+      # --- 这是新增的步骤 ---
+      - name: Upload screenshot artifact
+        # 这个条件很重要：只有当上一步失败时才上传截图，用于调试
+        # 如果您总是想看截图，可以移除 if 条件
+        # if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-screenshot # 上传后文件的名字
+          path: '*.png' # 要上传的文件路径
