@@ -33,10 +33,10 @@ async def main():
         # 添加 ignore_https_errors=True 来忽略 HTTPS 证书错误
         browser = await p.chromium.launch(
             headless=True,
-            args=['--no-sandbox', '--disable-dev-shm-usage'],
-            ignore_https_errors=True  # <--- 关键修改在这里
+            args=['--no-sandbox', '--disable-dev-shm-usage']
         )
-        page = await browser.new_page()
+        context = await browser.new_context(ignore_https_errors=True)
+        page = await context.new_page()
         page.set_default_timeout(30000)
 
         # 打开目标网页 (使用原始 RENEW_URL 进行登录操作)
