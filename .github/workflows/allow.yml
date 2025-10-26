@@ -3,15 +3,13 @@ name: Run Login Script
 on:
   workflow_dispatch:
   # schedule:
-  #   - cron: "11 15 */3 * *"  # 每三天运行一次
+  #   - cron: "11 15 * * 2"  # 每三天运行一次，可以根据需求调整时间
   push:
     branches:
       - main
-
 jobs:
   login:
     runs-on: ubuntu-latest
-    retention-days: 3
 
     steps:
       - name: Checkout 仓库代码
@@ -35,11 +33,12 @@ jobs:
           PASSWORD: ${{ secrets.PASSWORD }}
           HEADER_SECRET: ${{ secrets.HEADER_SECRET }}
         run: python allow.py
-
+      # --- 这是新增的步骤 ---
       - name: Upload screenshot artifact
-        # 如果你只想在失败时上传截图，可以取消注释下面这行
+        # 这个条件很重要：只有当上一步失败时才上传截图，用于调试
+        # 如果您总是想看截图，可以移除 if 条件
         # if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: debug-screenshot
-          path: '*.png'
+          name: debug-screenshot # 上传后文件的名字
+          path: '*.png' # 要上传的文件路径
