@@ -31,6 +31,7 @@ jobs:
         env:
           RENEW_URL: ${{ secrets.RENEW_URL }}
           PASSWORD: ${{ secrets.PASSWORD }}
+          HEADER_SECRET: ${{ secrets.HEADER_SECRET }}
         run: python allow.py
       # --- 这是新增的步骤 ---
       - name: Upload screenshot artifact
