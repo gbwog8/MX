@@ -32,10 +32,6 @@ header_name, header_value = HEADER_SECRET.split(':', 1)
 parsed_url = urlparse(RENEW_URL)
 base_renew_url = f"{parsed_url.scheme}://{parsed_url.netloc}"
 
-print(f"原始 RENEW_URL: {RENEW_URL}")
-print(f"解析后的基础 URL: {base_renew_url}")
-print(f"将使用标头：{header_name}: {header_value}")
-
 async def main():
     MAX_RETRIES = 3
     success = False
