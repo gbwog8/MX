@@ -99,10 +99,7 @@ async def main():
                     print('提交按钮未找到')
 
                 target_url = f'{base_renew_url}/System/SpecialPardon'
-                print(f"即将访问的特殊链接: {target_url}")
                 await page.goto(target_url, wait_until='networkidle')
-                print(f"已访问 {target_url}")
-
                 print(f"--- [SUCCESS on attempt {attempt + 1}] ---")
                 success = True
                 break
